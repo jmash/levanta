@@ -1,0 +1,15 @@
+{
+  "name": "vueproj",
+  "version": "1.0.0",
+  "description": "As yet unnamed project for Alex H that will ask a user for what they did at the end of the day and then email that information out to everyone else using the application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "vueproj"
+  },
+  "author": "Jared M Ashcraft",
+  "license": "ISC"
+}

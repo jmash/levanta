@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <title>Unnamed Super Project</title>
+    </head>
+
+    <body>
+        <div id="app">
+        <!-- Layout front-end skeleton -->
+            <div v-if="visible" id="ask-message">{{ askMessageText }}</div> <!-- what did you do today? -->
+            <input v-model="userInput" v-if="visible" v-on:keyup.enter="handleInput" id="user-input" placeholder="What did you do today?"></input> <!-- the input box for the user -->
+            <div id="others-message">{{ othersMessageText }}</div> <!-- here's what everyone else did today -->
+            <div id="others-data">
+                <ol>
+                    <ul v-for="mook in mooks">
+                        <li>{{ mook.name }}</li>
+                        <li>{{ mook.time }}</li>
+                        <li>{{ mook.message }}</li>
+                    </ul>
+                </ol> 
+            </div> <!-- dummy data at first, until tied to a backend -->
+        </div>
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- For dev -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script> For production -->
+    <script>
+        var messageBridge = new Vue();
+
+        var askMessage = new Vue({
+            el: "#ask-message",
+            data: function() {
+                return {
+                    askMessageText: "Let's see what you got done today!",
+                    visible: true
+                };
+            },
+            created: function() {
+                messageBridge.$on('hideMessage', this.hideMessage);
+            },
+            beforeDestroy: function() {
+                messageBridge.$off('hideMessage', this.hideMessage);
+            },
+            methods: {
+                hideMessage: function() {
+                    this.visible=false;
+                }
+            }
+        });
+
+        var othersMessage = new Vue({
+            el: "#others-message",
+            data: function() {
+                return {
+                    othersMessageText: "Let's see what everyone else was up to!"
+                };
+            }
+        });
+
+        var userInput = new Vue({
+            el: "#user-input",
+            data: function() {
+                return {
+                    visible: true
+                };
+            },
+            methods: {
+                handleInput: function() {
+                    messageBridge.$emit('hideMessage');
+                    this.visible = false;
+                }
+            }
+        });
+        
+        // temporary filler data until the backend gets hooked up
+        var othersData = new Vue({
+            el: "#others-data",
+            data: function() {
+                return {
+                    mooks: 
+                    [
+                        { 
+                          name: "Axel Hyanandezzer",
+                          time: "4:20 pm",
+                          message: "Sassed my boss and all my friends and then drank heavily until passing out."
+                        },
+                        { 
+                          name: "Billy Javanovich Malakovich",
+                          time: "3:22 pm",
+                          message: "Ate Russian bear claws and shat out whale tusks"
+                        },
+                        { 
+                          name: "Granny Granola",
+                          time: "2:40 pm",
+                          message: "Ran a goddamn 10k and then benched an oak tree"
+                        }
+                    ]
+                }
+            }
+        });
+    </script>
+</html>
