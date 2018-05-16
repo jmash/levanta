@@ -7,11 +7,27 @@
     <body>
         <div id="app">
         <!-- Layout front-end skeleton -->
-            <ask-message></ask-message> <!-- what did you do today? -->
-            <user-input></user-input> <!-- user input box -->
+            <div v-if="titleVisible">
+                <ask-message></ask-message> <!-- what did you do today? -->
+                <user-input 
+                    v-if="titleVisible"
+                    v-model="checkInMessage"
+                    @submit="onCheckIn"
+                ></user-input> <!-- user input box -->
+            </div>
             <others-message></others-message> <!-- here's what everyone else did today -->
             <team-data></team-data> <!-- data from other team members -->
         </div>
+
+        <script id="user-input" type="text/x-template">
+            <input 
+                :value="value"
+                @input="$emit('input', $event.target.value)"
+                @keyup.enter="$emit('submit')"
+                v-if="sharedState.titleVisible" 
+                placeholder="What did you do today?"
+            />
+        </script>
     </body>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- For dev -->
@@ -61,7 +77,8 @@
         });
 
         Vue.component('user-input', {
-            template: `<input v-model="uInput" v-if="sharedState.titleVisible" v-on:keyup.enter="handleInput" id="user-input" placeholder="What did you do today?"></input>`,
+            template: `#user-input`,
+            props: ['value'],
             data: function() {
                 return {
                     visible: true,
@@ -128,6 +145,19 @@
             }
         });
 
-        new Vue({ el: '#app' });
+        new Vue({ 
+            el: '#app',
+            data() {
+                return {
+                    titleVisible: true,
+                    checkInMessage: '',
+                }
+            },
+            methods: {
+                onCheckIn(event) {
+                    this.titleVisible = false
+                }
+            }
+        });
     </script>
 </html>
