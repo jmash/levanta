@@ -10,7 +10,6 @@
             <div v-if="titleVisible">
                 <ask-message></ask-message> <!-- what did you do today? -->
                 <user-input 
-                    v-if="titleVisible"
                     v-model="checkInMessage"
                     @submit="onCheckIn"
                 ></user-input> <!-- user input box -->
