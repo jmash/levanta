@@ -24,7 +24,6 @@
                 :value="value"
                 @input="$emit('input', $event.target.value)"
                 @keyup.enter="$emit('submit')"
-                v-if="sharedState.titleVisible" 
                 placeholder="What did you do today?"
             />
         </script>
@@ -32,36 +31,15 @@
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- For dev -->
         <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script> For production -->
         <script>
-            var store = {
-                debug: true,
-                state: {
-                    titleVisible: true,
-                },
-                hideTitle() {
-                    console.log("hideTitle fired");
-                    if(this.state.titleVisible) this.state.titleVisible = false;
-                    console.log(this.state);
-                },
-                showTitle() {
-                    if(!this.state.titleVisible) this.state.titleVisible = true;
-                },
-                updateTeam() {
-                    if(this.debug) console.log("updateTeam fired");
-                    
-                }
-            };
-
-
             Vue.component('ask-message', {
-                template: `<div id="ask-message" v-if="sharedState.titleVisible"><h1>{{privateState.currDate}}</h1><h3>{{privateState.askMessageText}}</h3></div>`,
+                template: `<div id="ask-message"><h1>{{privateState.currDate}}</h1><h3>{{privateState.askMessageText}}</h3></div>`,
                 data: function() {
                     var today = new Date().toLocaleDateString();
                     return {
                         privateState: {
                             askMessageText: "Let's see what you got done today!",
                             currDate: today, 
-                        },
-                        sharedState: store.state
+                        }
                     };
                 },
             });
@@ -78,18 +56,6 @@
             Vue.component('user-input', {
                 template: `#user-input`,
                 props: ['value'],
-                data: function() {
-                    return {
-                        visible: true,
-                        uInput: "",
-                        sharedState: store.state
-                    };
-                },
-                methods: {
-                    handleInput: function() {
-                        store.hideTitle();
-                    }
-                }
             });
             
             // temporary filler data until the backend gets hooked up
