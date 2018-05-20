@@ -4,6 +4,7 @@
   "description": "As yet unnamed project for Alex H that will ask a user for what they did at the end of the day and then email that information out to everyone else using the application.",
   "main": "index.js",
   "scripts": {
+    "dev": "serve App",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,5 +12,8 @@
     "url": "vueproj"
   },
   "author": "Jared M Ashcraft",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "serve": "^6.5.7"
+  }
 }

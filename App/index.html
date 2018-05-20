@@ -1,132 +1,128 @@
 <html>
     <head>
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
         <title>Unnamed Super Project</title>
     </head>
 
     <body>
         <div id="app">
         <!-- Layout front-end skeleton -->
-            <ask-message></ask-message> <!-- what did you do today? -->
-            <user-input></user-input> <!-- user input box -->
+            <div v-if="titleVisible">
+                <ask-message></ask-message> <!-- what did you do today? -->
+                <user-input 
+                    v-model="checkInMessage"
+                    @submit="onCheckIn"
+                ></user-input> <!-- user input box -->
+            </div>
             <others-message></others-message> <!-- here's what everyone else did today -->
             <team-data></team-data> <!-- data from other team members -->
         </div>
-    </body>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- For dev -->
-    <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script> For production -->
-    <script>
-        var store = {
-            debug: true,
-            state: {
-                titleVisible: true,
-            },
-            hideTitle() {
-                console.log("hideTitle fired");
-                if(this.state.titleVisible) this.state.titleVisible = false;
-                console.log(this.state);
-            },
-            showTitle() {
-                if(!this.state.titleVisible) this.state.titleVisible = true;
-            },
-            updateTeam() {
-                if(this.debug) console.log("updateTeam fired");
-                
-            }
-        };
-
-
-        Vue.component('ask-message', {
-            template: `<div id="ask-message" v-if="sharedState.titleVisible"><h1>{{privateState.currDate}}</h1><h3>{{privateState.askMessageText}}</h3></div>`,
-            data: function() {
-                var today = new Date().toLocaleDateString();
-                return {
-                    privateState: {
-                        askMessageText: "Let's see what you got done today!",
-                        currDate: today, 
-                    },
-                    sharedState: store.state
-                };
-            },
-        });
-
-        Vue.component('others-message', {
-            template: '<div id="others-message">{{ othersMessageText }}</div>',
-            data: function() {
-                return {
-                    othersMessageText: "Let's see what everyone else was up to!"
-                };
-            }
-        });
-
-        Vue.component('user-input', {
-            template: `<input v-model="uInput" v-if="sharedState.titleVisible" v-on:keyup.enter="handleInput" id="user-input" placeholder="What did you do today?"></input>`,
-            data: function() {
-                return {
-                    visible: true,
-                    uInput: "",
-                    sharedState: store.state
-                };
-            },
-            methods: {
-                handleInput: function() {
-                    store.hideTitle();
-                }
-            }
-        });
+        <script id="user-input" type="text/x-template">
+            <input 
+                :value="value"
+                @input="$emit('input', $event.target.value)"
+                @keyup.enter="$emit('submit')"
+                placeholder="What did you do today?"
+            />
+        </script>
         
-        // temporary filler data until the backend gets hooked up
-        Vue.component('team-data', {
-            template: ` 
-            <div id="team-data">
-                <ol>
-                    <ul v-for="mook in mooks">
-                        <li>{{ mook.name }}</li>
-                        <li>{{ mook.time }}</li>
-                        <li>{{ mook.message }}</li>
-                    </ul>
-                </ol> 
-            </div>`,
-            data: function() {
-                return {
-                    mooks: 
-                    [
-                        { 
-                          id: 1,
-                          name: "Axel Hyanandezzer",
-                          time: "4:20 pm",
-                          message: "Sassed my boss"
-                        },
-                        { 
-                          id: 2,
-                          name: "Billy Javanovich Malakovich",
-                          time: "3:22 pm",
-                          message: "Ate Russian bear claws"
-                        },
-                        { 
-                          id: 3,
-                          name: "Granny Granola",
-                          time: "2:40 pm",
-                          message: "Ran a 10K"
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- For dev -->
+        <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script> For production -->
+        <script>
+            Vue.component('ask-message', {
+                template: `<div id="ask-message"><h1>{{privateState.currDate}}</h1><h3>{{privateState.askMessageText}}</h3></div>`,
+                data: function() {
+                    var today = new Date().toLocaleDateString();
+                    return {
+                        privateState: {
+                            askMessageText: "Let's see what you got done today!",
+                            currDate: today, 
                         }
-                    ]
-                }
-            },
-            methods: {
-                addPost: function(uInput) {
-                    var curDate = new Date();
-                    this.mooks.push(
-                        {
-                            id: 4,
-                            name: "Jurrd Hurrd McGurrd",
-                            time: curDate.toLocaleTimeString(),
-                            message: "hardcoded message"
-                        }
-                    );
-                } 
-            }
-        });
+                    };
+                },
+            });
 
-        new Vue({ el: '#app' });
-    </script>
+            Vue.component('others-message', {
+                template: '<div id="others-message">{{ othersMessageText }}</div>',
+                data: function() {
+                    return {
+                        othersMessageText: "Let's see what everyone else was up to!"
+                    };
+                }
+            });
+
+            Vue.component('user-input', {
+                template: `#user-input`,
+                props: ['value'],
+            });
+            
+            // temporary filler data until the backend gets hooked up
+            Vue.component('team-data', {
+                template: ` 
+                <div id="team-data">
+                    <ol>
+                        <ul v-for="mook in mooks">
+                            <li>{{ mook.name }}</li>
+                            <li>{{ mook.time }}</li>
+                            <li>{{ mook.message }}</li>
+                        </ul>
+                    </ol> 
+                </div>`,
+                data: function() {
+                    return {
+                        mooks: 
+                        [
+                            { 
+                            id: 1,
+                            name: "Axel Hyanandezzer",
+                            time: "4:20 pm",
+                            message: "Sassed my boss"
+                            },
+                            { 
+                            id: 2,
+                            name: "Billy Javanovich Malakovich",
+                            time: "3:22 pm",
+                            message: "Ate Russian bear claws"
+                            },
+                            { 
+                            id: 3,
+                            name: "Granny Granola",
+                            time: "2:40 pm",
+                            message: "Ran a 10K"
+                            }
+                        ]
+                    }
+                },
+                methods: {
+                    addPost: function(uInput) {
+                        var curDate = new Date();
+                        this.mooks.push(
+                            {
+                                id: 4,
+                                name: "Jurrd Hurrd McGurrd",
+                                time: curDate.toLocaleTimeString(),
+                                message: "hardcoded message"
+                            }
+                        );
+                    } 
+                }
+            });
+
+            new Vue({ 
+                el: '#app',
+                data() {
+                    return {
+                        titleVisible: true,
+                        checkInMessage: '',
+                    }
+                },
+                methods: {
+                    onCheckIn(event) {
+                        this.titleVisible = false
+                    }
+                }
+            });
+        </script>
+    </body>
 </html>
