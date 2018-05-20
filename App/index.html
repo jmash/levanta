@@ -15,7 +15,7 @@
                 ></user-input> <!-- user input box -->
             </div>
             <others-message></others-message> <!-- here's what everyone else did today -->
-            <team-data></team-data> <!-- data from other team members -->
+            <team-data :mooks="mooks"></team-data> <!-- data from other team members -->
         </div>
 
         <script id="user-input" type="text/x-template">
@@ -31,14 +31,12 @@
         <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script> For production -->
         <script>
             Vue.component('ask-message', {
-                template: `<div id="ask-message"><h1>{{privateState.currDate}}</h1><h3>{{privateState.askMessageText}}</h3></div>`,
+                template: `<div id="ask-message"><h1>{{currDate}}</h1><h3>{{askMessageText}}</h3></div>`,
                 data: function() {
                     var today = new Date().toLocaleDateString();
                     return {
-                        privateState: {
-                            askMessageText: "Let's see what you got done today!",
-                            currDate: today, 
-                        }
+                        askMessageText: "Let's see what you got done today!",
+                        currDate: today, 
                     };
                 },
             });
@@ -57,7 +55,6 @@
                 props: ['value'],
             });
             
-            // temporary filler data until the backend gets hooked up
             Vue.component('team-data', {
                 template: ` 
                 <div id="team-data">
@@ -69,8 +66,15 @@
                         </ul>
                     </ol> 
                 </div>`,
-                data: function() {
+                props: ['mooks']
+            });
+
+            new Vue({ 
+                el: '#app',
+                data() {
                     return {
+                        titleVisible: true,
+                        checkInMessage: '',
                         mooks: 
                         [
                             { 
@@ -92,10 +96,14 @@
                             message: "Ran a 10K"
                             }
                         ]
-                    }
-                },
-                methods: {
-                    addPost: function(uInput) {
+                      }
+                    },
+                  methods: {
+                    onCheckIn(event) {
+                        this.titleVisible = false
+                        this.addPost("dummy");
+                    },
+                    addPost(message) {
                         var curDate = new Date();
                         this.mooks.push(
                             {
@@ -106,21 +114,6 @@
                             }
                         );
                     } 
-                }
-            });
-
-            new Vue({ 
-                el: '#app',
-                data() {
-                    return {
-                        titleVisible: true,
-                        checkInMessage: '',
-                    }
-                },
-                methods: {
-                    onCheckIn(event) {
-                        this.titleVisible = false
-                    }
                 }
             });
         </script>
