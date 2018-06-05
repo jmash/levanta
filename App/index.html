@@ -22,7 +22,7 @@
             <input 
                 :value="value"
                 @input="$emit('input', $event.target.value)"
-                @keyup.enter="$emit('submit')"
+                @keyup.enter="$emit('submit', $event.target.value)"
                 placeholder="What did you do today?"
             />
         </script>
@@ -101,7 +101,7 @@
                   methods: {
                     onCheckIn(event) {
                         this.titleVisible = false
-                        this.addPost("dummy");
+                        this.addPost(event);
                     },
                     addPost(message) {
                         var curDate = new Date();
@@ -110,7 +110,7 @@
                                 id: 4,
                                 name: "Jurrd Hurrd McGurrd",
                                 time: curDate.toLocaleTimeString(),
-                                message: "hardcoded message"
+                                message: message
                             }
                         );
                     } 
