@@ -1,0 +1,82 @@
+[debug] [2018-06-06T17:44:58.042Z] ----------------------------------------------------------------------
+[debug] [2018-06-06T17:44:58.045Z] Command:       /usr/bin/node /usr/bin/firebase serve
+[debug] [2018-06-06T17:44:58.045Z] CLI Version:   3.18.5
+[debug] [2018-06-06T17:44:58.045Z] Platform:      linux
+[debug] [2018-06-06T17:44:58.046Z] Node Version:  v8.11.2
+[debug] [2018-06-06T17:44:58.046Z] Time:          Wed Jun 06 2018 13:44:58 GMT-0400 (EDT)
+[debug] [2018-06-06T17:44:58.046Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-06-06T17:44:58.059Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-06-06T17:44:58.059Z] > authorizing via signed-in user
+[debug] [2018-06-06T17:44:58.061Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-06-06T17:44:58.062Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/Ezm__xwhinMEdSDSfa60xRWM08Fkq9_aSxK2g2e8DRQ',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Jun 06 2018 13:44:58 GMT-0400 (EDT)
+[debug] [2018-06-06T17:44:58.369Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-06T17:44:58.377Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/levanta-71bb9  
+  
+ Wed Jun 06 2018 13:44:58 GMT-0400 (EDT)
+[debug] [2018-06-06T17:44:59.076Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-06T17:44:59.077Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/levanta-71bb9/tokens  
+  
+ Wed Jun 06 2018 13:44:59 GMT-0400 (EDT)
+[debug] [2018-06-06T17:44:59.683Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-06T17:44:59.685Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/levanta-71bb9  
+  
+ Wed Jun 06 2018 13:44:59 GMT-0400 (EDT)
+[debug] [2018-06-06T17:45:00.057Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/jmash/Projects/Levanta'...
+[info] 
+[debug] [2018-06-06T17:45:00.060Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/561168893329/clients/_:getWebAppConfig  
+  
+ Wed Jun 06 2018 13:45:00 GMT-0400 (EDT)
+[debug] [2018-06-06T17:45:00.526Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: App
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[debug] [2018-06-09T01:14:53.620Z] ----------------------------------------------------------------------
+[debug] [2018-06-09T01:14:53.624Z] Command:       /usr/bin/node /usr/bin/firebase serve
+[debug] [2018-06-09T01:14:53.624Z] CLI Version:   3.18.5
+[debug] [2018-06-09T01:14:53.624Z] Platform:      linux
+[debug] [2018-06-09T01:14:53.624Z] Node Version:  v8.11.2
+[debug] [2018-06-09T01:14:53.624Z] Time:          Fri Jun 08 2018 21:14:53 GMT-0400 (EDT)
+[debug] [2018-06-09T01:14:53.624Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-06-09T01:14:53.645Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-06-09T01:14:53.646Z] > authorizing via signed-in user
+[debug] [2018-06-09T01:14:53.650Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-06-09T01:14:53.651Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/Ezm__xwhinMEdSDSfa60xRWM08Fkq9_aSxK2g2e8DRQ',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Fri Jun 08 2018 21:14:53 GMT-0400 (EDT)
+[debug] [2018-06-09T01:14:53.982Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-09T01:14:53.988Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/levanta-71bb9  
+  
+ Fri Jun 08 2018 21:14:53 GMT-0400 (EDT)
+[debug] [2018-06-09T01:14:54.488Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-09T01:14:54.490Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/levanta-71bb9/tokens  
+  
+ Fri Jun 08 2018 21:14:54 GMT-0400 (EDT)
+[debug] [2018-06-09T01:14:55.065Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-09T01:14:55.068Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/levanta-71bb9  
+  
+ Fri Jun 08 2018 21:14:55 GMT-0400 (EDT)
+[debug] [2018-06-09T01:14:55.530Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/jmash/Projects/Levanta'...
+[info] 
+[debug] [2018-06-09T01:14:55.535Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/561168893329/clients/_:getWebAppConfig  
+  
+ Fri Jun 08 2018 21:14:55 GMT-0400 (EDT)
+[debug] [2018-06-09T01:14:56.046Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: App
+[info] ✔  hosting: Local server: http://localhost:5000
+

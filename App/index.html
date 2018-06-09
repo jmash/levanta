@@ -1,7 +1,7 @@
 <html>
     <head>
         <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-        <title>Unnamed Super Project</title>
+        <title>Levanta</title>
     </head>
 
     <body>
@@ -18,18 +18,38 @@
             <team-data :mooks="mooks"></team-data> <!-- data from other team members -->
         </div>
 
-        <script id="user-input" type="text/x-template">
-            <input 
-                :value="value"
-                @input="$emit('input', $event.target.value)"
-                @keyup.enter="$emit('submit', $event.target.value)"
-                placeholder="What did you do today?"
-            />
-        </script>
+    <script id="user-input" type="text/x-template">
+
+        <input 
+            :value="value"
+            @input="$emit('input', $event.target.value)"
+            @keyup.enter="$emit('submit', $event.target.value)"
+            placeholder="What did you do today?"
+        />
+    </script>
         
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- For dev -->
-        <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script> For production -->
-        <script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- For dev -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script> For production -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+
+	<!-- firebase -->
+
+    <!-- config file will be ignored for github -->
+    <script src="./config.js"></script>
+
+	<script>
+	    firebase.initializeApp({
+            apiKey: config.apiKey,
+            authDomain: config.authDomain,
+            projectId: config.projectId
+	    });
+
+	    var db = firebase.firestore();
+	</script>
+
+        <script> 
             Vue.component('ask-message', {
                 template: `<div id="ask-message"><h1>{{currDate}}</h1><h3>{{askMessageText}}</h3></div>`,
                 data: function() {

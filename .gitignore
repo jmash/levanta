@@ -17,3 +17,6 @@ tags
 
 # Node
 node_modules
+
+# config file
+config.js
